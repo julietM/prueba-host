@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./image/hop.webp" type="image/webp">
+</head>
+
+<style>
+/* Estructura general: botones izquierda, video derecha */
+.video-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Panel de botones */
+.video-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 200px;
+}
+
+/* Estilo de botones */
+.vid-btn {
+  background-color: #00C218;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.vid-btn:hover {
+  background-color: #009a14;
+  transform: translateX(5px);
+}
+
+.vid-btn.active {
+  background-color: #007d10;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* Reproductor de video */
+.video-player {
+  flex: 1;
+  text-align: center;
+}
+
+.video-player video {
+  width:60%;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Responsive (móvil) */
+@media (max-width: 700px) {
+  .video-player video{
+    width: 80%;
+  }
+  .video-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .vid-btn {
+    width: 30%;
+  }
+}
+    
+       
+</style>
+<body>
+ <header>
+    <div class="content">
+        
+        <div class="menu container">
+            <h1>Hostipal de comunicacion para los sordos</h1>
+        <input type="checkbox" id="menu">
+        <label for="menu">
+            <img src="./image/hamburger1.png"  class="menu-icono"  alt="" width="6" />
+        </label>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="abecedario.html">Abecedario</a></li>
+                <li><a href="senas.html">Videos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+ </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<div class="video-section">
+  <div class="video-buttons">
+    <button class="vid-btn active" data-src="./image/bienvienda1.mp4" controls autoplay>Bienvienda</button>
+    <button class="vid-btn" data-src="./image/buenos dias.mp4">Buenas dias</button>
+    <button class="vid-btn" data-src="./image/como estas1.mp4">Como estas </button>
+  </div>
+
+    <div class="video-buttons">
+    <button class="vid-btn active" data-src="./image/con gusto1.mp4">con gusto</button>
+    <button class="vid-btn" data-src="./image/bueb noches.mp4">Buenos noches</button>
+    <button class="vid-btn" data-src="./image/saludos1.mp4">saludos </button>
+  </div>
+
+  <div class="video-player">
+    <video id="player" controls width="100%" preload="metadata">
+      <source src="./image/bienvienda1.mp4" type="video/mp4">
+      Tu navegador no soporta el elemento <code>video</code>.
+    </video>
+  </div>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.vid-btn');
+  const player = document.getElementById('player');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-src');
+      player.pause();
+      player.querySelector('source').setAttribute('src', src);
+      player.load();
+      player.play().catch(()=>{});
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Inicio</a>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Servicios</a>
+        <a href="#">Contacto</a>
+    </div>
+    <p>&copy; 2025 Mi Sitio Web</p>
+</footer>
+</body>
+</html>
